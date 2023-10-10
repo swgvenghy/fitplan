@@ -1,8 +1,8 @@
 import { useState } from "react"
-import RenderHeader from "../components/RenderHeader";
-import RenderDays from "../components/RenderDays";
+import RenderHeader from "../components/Calender/RenderHeader";
+import RenderDays from "../components/Calender/RenderDays";
 import { addMonths, subMonths } from "date-fns";
-import RenderCells from "../components/RenderCells";
+import RenderCells from "../components/Calender/RenderCells";
 
 const Calender = () => {
   const [currentMonth, setCurrentMonth] = useState(new Date());

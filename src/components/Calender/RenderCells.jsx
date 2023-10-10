@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { addDays, endOfMonth, endOfWeek, format, startOfMonth, startOfWeek, isSameMonth, isSameDay } from 'date-fns';
 import { useNavigate } from 'react-router-dom';
 
@@ -8,7 +8,6 @@ const RenderCells = ({ currentMonth, selectedDate }) => {
   const monthEnd = endOfMonth(monthStart);
   const startDate = startOfWeek(monthStart);
   const endDate = endOfWeek(monthEnd);
-
   const rows = [];
   let days = [];
   let day = startDate;

@@ -16,7 +16,7 @@ const ExerciseHeader = (props) => {
           <div className="flex flex-row">
             <ExerciseSelect setSelectedValue={props.setSelectedValue}/>
           </div>
-          <button className='' >시작하기</button>
+          <button className=' font-bold text-xl text-green-500' onClick={() =>{props.setButtonCount(props.buttonCount+1)}}>시작하기</button>
         </div>
         <div>
           오늘의 총 불륨 : {props.todayScore}

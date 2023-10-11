@@ -17,11 +17,14 @@ const Calender = () => {
     setSelectedDate(day);
   }
 
+  let exerciseData = localStorage.getItem('exercise')
+  exerciseData = JSON.parse(exerciseData)
+
   return(
     <div className="flex w-full h-full flex-col items-center justify-center">
       <RenderHeader currentMonth={currentMonth} prevMonth = {prevMonth} nextMonth = {nextMonth}/>
       <RenderDays/>
-      <RenderCells currentMonth={currentMonth} selectedDate={selectedDate} onDateClick={onDateClick}/>
+      <RenderCells exerciseData={exerciseData} currentMonth={currentMonth} selectedDate={selectedDate} onDateClick={onDateClick}/>
     </div>
   )
 }

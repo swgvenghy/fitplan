@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react';
-import { addDays, endOfMonth, endOfWeek, format, startOfMonth, startOfWeek, isSameMonth, isSameDay } from 'date-fns';
+import { addDays, endOfMonth, endOfWeek, format, startOfMonth, startOfWeek, isSameMonth, isSameDay, parse, parseISO } from 'date-fns';
 import { useNavigate } from 'react-router-dom';
 
-const RenderCells = ({ currentMonth, selectedDate }) => {
-  const nevigate = useNavigate();
+const RenderCells = ({ currentMonth, selectedDate, exerciseData }) => {
   const monthStart = startOfMonth(currentMonth);
   const monthEnd = endOfMonth(monthStart);
   const startDate = startOfWeek(monthStart);
@@ -11,17 +10,18 @@ const RenderCells = ({ currentMonth, selectedDate }) => {
   const rows = [];
   let days = [];
   let day = startDate;
+  let exerciseDataDay = parseISO(exerciseData.day)
 
   while (day <= endDate) {
     for (let i = 0; i < 7; i++) {
       const formattedDate = format(day, 'd');
       const isCurrentMonth = isSameMonth(day, monthStart);
       const isSameSelectedDate = isSameDay(day, selectedDate);
-
+      const exerciseDate = isSameDay(day, exerciseDataDay)
       days.push(
         <div
-          className={` max-sm:w-48 w-64 h-16 border border-black border-opacity-10 text-center  max-sm:text-lg text-xl  cursor-pointer ${!isCurrentMonth ? 'text-gray-400' : isSameSelectedDate ? ' text-blue-400' : ''}`}
-          onClick={() => nevigate('/today_detail')}
+          className={` max-sm:w-48 w-64 h-16 border border-black border-opacity-10 text-center  max-sm:text-lg text-xl  cursor-pointer ${exerciseDate ? 'bg-yellow-300' : '' } ${!isCurrentMonth ? 'text-gray-400' : isSameSelectedDate ? ' text-blue-400' : ''}`}
+          onClick={() => {alert(exerciseData.score)}}
         >
           {formattedDate}
         </div>

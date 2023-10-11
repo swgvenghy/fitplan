@@ -9,9 +9,9 @@ const Exercise = () => {
   const [buttonCount, setButtonCount] = useState(0);
   const [exerciseOneList, setExerciseOneList] = useState([]);
   const [listExercise, setListExercise] = useState([]);
-  const today = useState(new Date())
+  const today = new Date();
   const navigate = useNavigate();
-
+  
   useEffect(() => {
     let copy = [...listExercise]
     copy.push(exerciseOneList)
@@ -19,6 +19,11 @@ const Exercise = () => {
     console.log(listExercise)
   },[exerciseOneList])
 
+  const localData = {
+    'day':today,
+    'list':listExercise,
+    'score':todayScore
+  }
   
   return(
     <div className="mx-5">
@@ -32,11 +37,7 @@ const Exercise = () => {
       {buttonCount !== 0 ? 
       <button
       onClick={() => {
-        let copy = [...listExercise]
-        copy[0] = todayScore
-        setListExercise(copy)
-        localStorage.setItem({today}, JSON.stringify(listExercise))
-
+        localStorage.setItem('exercise',JSON.stringify(localData));
         alert('오늘 운동 끝 고생하셨습니당!')
         navigate('/')
       }}
